@@ -4,6 +4,7 @@ const initialState = {
   user: localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null,
+  emailVerified: false, // Add email verification status
 };
 
 export const authReducer = (state, action) => {
@@ -18,6 +19,13 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         user: null,
+        emailVerified: false, // Reset email verification status on logout
+      };
+
+    case "VERIFY_EMAIL":
+      return {
+        ...state,
+        emailVerified: true, // Set email verification status to true
       };
 
     default:
